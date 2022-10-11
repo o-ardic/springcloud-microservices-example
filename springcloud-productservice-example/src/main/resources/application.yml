@@ -1,0 +1,32 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: product-service
+  zipkin:
+    baseUrl: http://localhost:9411
+    sender:
+      # web, rabbit, activemq or kafka
+      type: rabbit
+  sleuth:
+    sampler:
+      probability: 1.0
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka
+  instance:
+    hostname: localhost
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
